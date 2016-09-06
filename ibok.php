@@ -1,4 +1,7 @@
 <?php
+
+header("Access-Control-Allow-Origin: *");
+
 $isbn = $_GET['isbn'];
 $book_page = file_get_contents('https://ibok.no/bok/' . $isbn);
 $book_id = explode("'", explode("{book_id:'", $book_page)[1])[0];
