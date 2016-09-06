@@ -9,6 +9,9 @@ $add_json = file_get_contents('https://ibok.no/api/classified/?book_id=' . $book
 $add_json = json_decode($add_json, true);
 
 
+$title_regexp = "/<h1>(.*)</h1>/ms";
+preg_match($details_regexp, $title, $matches);
+
 $details_regexp = "/<p>(?:\s)*<b>Av:<\/b>(.*)<br>(?:\s)*<b>Forlag:<\/b>(.*)<br>(?:\s*)<b>ISBN:<\/b>(.*)<br>(?:\s*)<b>Utgitt:<\/b>(.*)<br>$/m";
 preg_match($details_regexp, $book_page, $matches);
 
@@ -31,6 +34,7 @@ $json = [
     'author' => $matches[1],
     'publisher' => $matches[2],
     'year' => $matches[4],
+    'title' => $title,
     'prices' => $prices_ass
 ];
 header('Content-Type: application/json');
