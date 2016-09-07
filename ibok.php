@@ -10,7 +10,7 @@ $add_json = json_decode($add_json, true);
 
 
 $title_regexp = "/<h1>(.*)</h1>/ms";
-preg_match($details_regexp, $title, $matches);
+preg_match($details_regexp, $book_page, $title);
 
 $details_regexp = "/<p>(?:\s)*<b>Av:<\/b>(.*)<br>(?:\s)*<b>Forlag:<\/b>(.*)<br>(?:\s*)<b>ISBN:<\/b>(.*)<br>(?:\s*)<b>Utgitt:<\/b>(.*)<br>$/m";
 preg_match($details_regexp, $book_page, $matches);
