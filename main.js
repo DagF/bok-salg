@@ -20,16 +20,44 @@ function getBook(){
 }
 
 function getLowestPriceFromAds(json) {
-    return 5;
+    var lowest = json[0].price;
+    var number;
+    for(var i = 1; i < json.length; i++){
+        number = parseInt(json[i].price);
+        if( number < lowest){
+            lowest = number;
+        }
+    }
+    return lowest;
 }
 function getHighetsPriceFromAds(json) {
-    return 5;
-
+    var lowest = json[0].price;
+    var number;
+    for(var i = 1; i < json.length; i++){
+        number = parseInt(json[i].price);
+        if( number > lowest){
+            lowest = number;
+        }
+    }
+    return lowest;
 }
 function getTypicalPriceFromAds(json) {
     return 5;
 
 }
+
+function getPriceList(prices){
+    var html = "";
+    html += "<ul>";
+    for(var i = 0; i < prices.length; i++){
+        html += "<li>";
+        html += prices[i].store + " - " + prices[i].price;
+        html += "</li>";
+    }
+    html += "</ul>";
+    return html;
+}
+
 function toTableRow(json){
     var price = {
         "lowest" : getLowestPriceFromAds(json['ads']),
@@ -42,9 +70,11 @@ function toTableRow(json){
         "<td>"+json['author']+"</td>"+
         "<td>"+json['publisher']+"</td>"+
         "<td>"+json['year']+"</td>"+
-        "<td>Lavest pris</td>"+
-        "<td>Typisk pris</td>"+
-        "<td>Høyest pris</td>"+
+        "<td>"+price.lowest+"</td>"+
+        "<td>"+price.typical+"</td>"+
+        "<td>"+price.highest+"</td>"+
+        "<td>"+getPriceList(json.prices)+"</td>"+
         "<td><a href='https://ibok.no/bok/'" + json['bookId'] + ">Ibok-link</a></td>"+
+        "<td>"+json['title']+ " - isbn:" +json['isbn']+" "+json['year']+ " - " +price.typical +"kr</td>"+
         "</tr>";
 }
