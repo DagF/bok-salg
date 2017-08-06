@@ -15,7 +15,7 @@ preg_match($title_regexp, $book_page, $title);
 $details_regexp = "/<p>(?:\s)*<b>Av:<\/b>(.*)<br>(?:\s)*<b>Forlag:<\/b>(.*)<br>(?:\s*)<b>ISBN:<\/b>(.*)<br>(?:\s*)<b>Utgitt:<\/b>(.*)<br>$/m";
 preg_match($details_regexp, $book_page, $matches);
 
-$img_regexp = '<div class="box_module_content">(?:\s)*<img src="(.*)"';
+$img_regexp = '/<div class="box_module_content">(?:\s)*<img src="(.*)"/';
 preg_match_all($img_regexp, $book_page, $img);
 
 $prices_regexp = '/<span id="(.*)" class=" books_price">(?:\s*)(.*?)(?:\s*)<\/span>/';
