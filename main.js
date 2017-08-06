@@ -96,6 +96,6 @@ function toTableRow(json){
         "<td>"+price.highest+"</td>"+
         "<td>"+getPriceList(json.prices)+"</td>"+
         "<td><a href='https://ibok.no/bok/" + json['isbn'] + "'>Ibok-link</a></td>"+
-        "<td> <img src='"+json['img']+ "'/>" +json['title']+ " - isbn:" +json['isbn']+" - utgitt: "+json['year']+ " - " +price.typical +"kr</td>"+
+        "<td> <table><tr><td><img src='"+json['img']+ "'/></td><td>" +json['title']+ " - isbn:" +json['isbn']+" - utgitt: "+json['year']+ " - " +price.typical +"kr</td></tr></table></td>"+
         "</tr>";
 }
