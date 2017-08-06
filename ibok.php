@@ -15,6 +15,9 @@ preg_match($title_regexp, $book_page, $title);
 $details_regexp = "/<p>(?:\s)*<b>Av:<\/b>(.*)<br>(?:\s)*<b>Forlag:<\/b>(.*)<br>(?:\s*)<b>ISBN:<\/b>(.*)<br>(?:\s*)<b>Utgitt:<\/b>(.*)<br>$/m";
 preg_match($details_regexp, $book_page, $matches);
 
+$img_regexp = '<div class="box_module_content">(?:\s)*<img src="(.*)"';
+preg_match($title_regexp, $book_page, $img);
+
 $prices_regexp = '/<span id="(.*)" class=" books_price">(?:\s*)(.*?)(?:\s*)<\/span>/';
 preg_match_all($prices_regexp, $book_page, $prices);
 
@@ -35,7 +38,8 @@ $json = [
     'publisher' => trim($matches[2]),
     'year' => trim($matches[4]),
     'title' => $title[1],
-    'prices' => $prices_ass
+    'prices' => $prices_ass,
+    'img' => $img
 ];
 header('Content-Type: application/json');
 echo json_encode($json);
